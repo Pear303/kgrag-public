@@ -1,0 +1,61 @@
+# .dockerignore —— 构建上下文裁剪（2026-09-15 新增）
+#
+# 背景：Dockerfile 使用 `COPY . .`。此前无 .dockerignore，构建上下文达 **5456 MB**
+#      （其中 .sisyphus 5088 MB：含 4 份 ~240 MB 的嵌入缓存与备份），
+#      既使每次 build 传输极慢，也会把大量无关产物打进镜像。
+#
+# 原则：只排除「运行不需要、且体积大或含敏感信息」的内容；
+#      应用运行所需的代码、配置、data/、reports/ 全部保留。
+
+# ---- 版本控制与本地元数据 ----
+.git
+.gitignore
+.sisyphus
+.superpowers
+.audit_tmp
+
+# ---- Python 缓存与虚拟环境 ----
+__pycache__
+**/__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.venv
+venv
+env
+
+# ---- Node（若曾用于前端构建）----
+node_modules
+**/node_modules
+
+# ---- 备份与大体积中间产物 ----
+*.bak
+*.bak_*
+**/*.bak
+**/*.bak_*
+backups
+**/backups
+analysis/out
+logs
+*.log
+
+# ---- 敏感文件（凭据绝不进镜像）----
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+credentials
+**/credentials*
+*.pem
+*.key
+api_keys*
+**/api_keys*
+
+# ---- 编辑器/系统 ----
+.vscode
+.idea
+.DS_Store
+Thumbs.db

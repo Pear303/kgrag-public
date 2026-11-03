@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node / frontend build
+node_modules/
+webui/dist/
+
+# 密钥与本地配置
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*
+api_keys*
+
+# 运行时数据与产物
+.sisyphus/
+data/
+reports/
+logs/
+*.log
+*.pid
+*.db
+*.sqlite3
+*.ckpt.json
+
+# 备份与临时文件
+*.bak
+*.bak_*
+*.orig
+*.rej
+*.tmp
+_tmp_*
+.DS_Store
+Thumbs.db

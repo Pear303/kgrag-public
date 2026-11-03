@@ -1,0 +1,12 @@
+# 行尾统一：文本文件入库用 LF，避免 CRLF 反复转换污染评测结果
+* text=auto eol=lf
+
+# 二进制/不可变数据
+*.json text eol=lf
+*.json.bak_prem64 text eol=lf
+*.npy binary
+*.png binary
+*.html binary
+*.sqlite binary
+*.graphml text eol=lf
+*.cypher text eol=lf

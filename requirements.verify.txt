@@ -1,0 +1,45 @@
+# requirements.verify.txt —— 容器验证用依赖清单（2026-09-15 新增）
+#
+# 与 requirements.txt 的差异（均为「按本机实际环境校正」，非版本升级）：
+#   1. llama-index 0.12.52 → 0.14.23（原值在本机并不存在；且 0.12.52 依赖解不可行）
+#   2. 其余直接依赖全部改为「本机实际安装版本」——本机版本才是产生论文全部结果的环境
+#   3. 补 scipy==1.17.1（代码中 import 21 次但原清单未声明）
+#   4. 补 gunicorn==23.0.0（Dockerfile CMD 使用，原清单未声明）
+#   5. 不含 gradio（仅 frontend/app.py 使用；服务容器不需要，单独部署前端时另装）
+#   6. ragas 仍锁 0.4.3（论文评测口径，硬性约束，未改动）
+
+ragas==0.4.3
+
+llama-index==0.14.23
+llama-index-core==0.14.23
+llama-index-llms-ollama==0.10.1
+llama-index-llms-openai==0.7.10
+llama-index-embeddings-openai==0.6.0
+llama-index-embeddings-huggingface==0.7.0
+langchain-core==1.4.0
+langchain-ollama==1.1.0
+langchain-openai==1.2.2
+openai==2.32.0
+ollama==0.6.2
+
+neo4j==6.2.0
+networkx==3.6.1
+pyvis==0.3.2
+
+numpy==2.3.5
+pandas==3.0.2
+scipy==1.17.1
+jieba==0.42.1
+nltk==3.10.0
+datasets==5.0.1
+
+fastapi==0.136.0
+uvicorn==0.45.0
+gunicorn==23.0.0
+requests==2.32.5
+
+pdfplumber==0.11.10
+python-docx==1.2.0
+
+python-dotenv==1.2.2
+pydantic==2.13.4
